@@ -1,7 +1,8 @@
-import { Button } from "@/components/ui/button";
+
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+
+import Petlists from "./Petlists";
 
 const AdminDashboard = () => {
     const allusers = [{
@@ -51,7 +52,9 @@ const AdminDashboard = () => {
 
 
     ]
+    
     return (
+       
         <div className="lg:p-10 p-5">
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 grid-cols-2 ">
                 {
@@ -83,62 +86,8 @@ const AdminDashboard = () => {
                 }
             </div>
             <div className=" lg:mt-20 mt-10 font-['Fredoka'] rounded-xl shadow-2xl lg:p-5 p-2 bg-[#E5EEFF] ">
-                <h1 className="font-semibold"> New  Added Pets </h1>
-                <Table>
-                    <TableHeader>
-                        <TableRow>
-                            <TableHead className="w-[100px]">Location</TableHead>
-                            <TableHead>Added By Name</TableHead>
-                            <TableHead>Email</TableHead>
-                            <TableHead>Reported</TableHead>
-                            <TableHead className="text-right"> Fake Products</TableHead>
-                            <TableHead className="text-right"> Detail</TableHead>
-                        </TableRow>
-                    </TableHeader>
-
-                    <TableBody>
-                        {
-                            allpets.map((pet) => (
-                                <TableRow key={pet.id} className="hover:scale-95 transition-all "  >
-                                    <TableCell className="font-medium">{pet.Location}</TableCell>
-                                    <TableCell>{pet.AddedByName}</TableCell>
-                                    <TableCell>{pet.Email}</TableCell>
-                                    <TableCell className="">{pet.Reported}</TableCell>
-                                    <TableCell className="text-right">
-
-                                        <Button variant="destructive" className="mt-2 ml-2 ">
-                                            Block
-                                        </Button>
-                                    </TableCell>
-
-                                    <TableCell className="text-right">
-
-                                        <Button variant="destructive" className="mt-2 ">
-                                            Check
-                                        </Button>
-                                    </TableCell>
-                                </TableRow>
-                            ))
-                        }
-
-                    </TableBody>
-                </Table>
-                <Pagination>
-                    <PaginationContent>
-                        <PaginationItem>
-                            <PaginationPrevious />
-                        </PaginationItem>
-                        <PaginationItem>
-                            <PaginationLink href="#">1</PaginationLink>
-                        </PaginationItem>
-                        <PaginationItem>
-                            <PaginationEllipsis />
-                        </PaginationItem>
-                        <PaginationItem>
-                            <PaginationNext href="#" />
-                        </PaginationItem>
-                    </PaginationContent>
-                </Pagination>
+                <h1 className="text-2xl font-bold">Pet List</h1>
+                <Petlists />
             </div>
         </div>
     );

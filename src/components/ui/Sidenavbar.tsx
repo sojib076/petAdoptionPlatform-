@@ -33,6 +33,12 @@ const Sidenavbar = () => {
             icon: Users,
             variant: "default",
           },
+          {
+            title: "All Pets",
+            to: "/dashboard/pets",
+            icon: Inbox,
+            variant: "default",
+          }
         ]}
       />
     </div>

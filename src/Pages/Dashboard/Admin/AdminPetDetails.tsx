@@ -1,14 +1,14 @@
 import { useDispatch } from "react-redux";
 import { useLoaderData } from "react-router-dom";
-import { stopLoading } from "../../context/features/loading/loadingSlice";
+import { stopLoading } from "../../../context/features/loading/loadingSlice";
 import { useEffect, useState } from "react";
 
-const Petdetails = () => {
+const AdminPetDetails = () => {
   useEffect(() => {
     window.scrollTo(0, 0); // Scroll to the top when component mounts
   }, []);
   const data = useLoaderData();
-  console.log(data);
+
   const dispatch = useDispatch();
   dispatch(stopLoading());
   const imageurl = [
@@ -68,22 +68,23 @@ const Petdetails = () => {
               maiores debitis ipsum. Lorem ipsum dolor sit amet consectetur
               adipisicing elit. Unde rerum velit tenetur ut nemo, ullam animi
               cumque, eius amet perspiciatis molestiae explicabo laborum, optio
-              minus quo corporis impedit dolores voluptas!{" "}
+              minus quo corporis impedit dolores voluptas
             </p>
-            <div className="mt-6">
-              <button className="lg:w-[50%] bg-yellow-500 custom-button   font-bold  rounded hover:bg-yellow-600">
-                Apply Now for Adoption
+            <div className="mt-6 flex gap-5 ">
+              <button className="lg:w-[40%] bg-yellow-500 custom-button   font-bold  rounded hover:bg-yellow-600">
+                Block This Pet 
+              </button>
+              <button className="lg:w-[40%] bg-yellow-500 custom-button   font-bold  rounded hover:bg-yellow-600">
+                Block User 
               </button>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="mt-20">
-        <h1 className="section-title"> Related Pets </h1>
-      </div>
+     
     </>
   );
 };
 
-export default Petdetails;
+export default AdminPetDetails;

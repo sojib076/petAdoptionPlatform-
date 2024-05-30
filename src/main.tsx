@@ -13,6 +13,8 @@ import Dashboardlayout from "./Layout/Dashboardlayout.tsx";
 import Dashboard from "./Pages/Dashboard/Dashboard.tsx";
 import View from "./Pages/Dashboard/View.tsx";
 import Users from "./Pages/Dashboard/Admin/Users.tsx";
+import Petlists from "./Pages/Dashboard/Admin/Petlists.tsx";
+import AdminPetDetails from "./Pages/Dashboard/Admin/AdminPetDetails.tsx";
 
 // Define routes
 const routes = createBrowserRouter([
@@ -46,6 +48,18 @@ const routes = createBrowserRouter([
         path: "/dashboard/users",
         element: <Users></Users>,
       },
+      {
+        path: "/dashboard/pets",
+        element: <Petlists></Petlists>,
+      },
+      {
+        path: "/dashboard/petdetails/:petid",
+        loader: ({ params }: any) =>
+          fetch(
+            `https://jsonplaceholder.typicode.com/posts/${params.petid}`,
+          ).then((res) => res.json()),
+        element: <AdminPetDetails />,
+      }
     ],
   },
 ]);

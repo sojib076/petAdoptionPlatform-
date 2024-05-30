@@ -25,9 +25,7 @@ const locations: LocationOption[] = [
 ];
 const PetList = () => {
   const defaultLocation: LocationOption = { value: "dhaka", label: "Dhaka" };
-  const [selectedLocations, setSelectedLocations] = useState<
-    MultiValue<LocationOption>
-  >([defaultLocation]);
+  const [selectedLocations, setSelectedLocations] = useState<MultiValue<LocationOption>>([defaultLocation]);
 
   console.log(selectedLocations);
   const [selectedOption, setSelectedOption] = useState<string>("all");
@@ -78,6 +76,7 @@ const PetList = () => {
   const handelLoadMore = () => {
     dispatch(startLoading());
   };
+  
   return Loading ? (
     <Loadingcom />
   ) : (
@@ -165,7 +164,7 @@ const PetList = () => {
         </div>
       </div>
       <div className="mt-10">
-      <Pagination>
+        <Pagination>
           <PaginationContent>
             <PaginationItem>
               <PaginationPrevious />
