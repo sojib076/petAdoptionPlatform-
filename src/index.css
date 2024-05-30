@@ -133,3 +133,6 @@ body {
 .menuhover {
   @apply hover:bg-[#E5EEFF] px-5 py-1 hover:rounded-lg hover:shadow-xl transition-all;
 }
+.shadowbox{
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+}

@@ -32,13 +32,13 @@ const Whatwebest = () => {
     },
   ];
   return (
-    <div className=" lg:mt-0  whatwebg">
+    <div className=" lg:mt-0  whatwebg ">
       <div>
         <h1 className="text-center section-title font-semibold p-5">
           Why this Paltform?
         </h1>
       </div>
-      <div className="lg:mt-[70px] mt-10 text-left ">
+      <div className="lg:mt-[70px] mt-10 text-left  ">
         <div
           data-aos="fade-up"
           className="grid lg:grid-cols-4 grid-cols-1  lg:px-[70px] gap-10 "
@@ -46,7 +46,7 @@ const Whatwebest = () => {
           {whythisplatform.map((item) => (
             <div
               key={item.id}
-              className="flex flex-col items-center justify-center lg:w-[240px]  shadow-xl   scaleuphover"
+              className=" flex flex-col items-center justify-center w-[90%] lg:w-[240px]  shadowbox  scaleuphover mx-auto"
             >
               <div className="flex items-center justify-center bg-gray-100 w-16 h-16 rounded-full hover:animate-spin ">
                 <span className="text-2xl"> {item.icon}</span>

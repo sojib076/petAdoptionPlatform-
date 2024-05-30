@@ -41,16 +41,14 @@ const WhyRelyOnUs = () => {
         <h2 className="text-center font-semibold section-title ">
           We Work For
         </h2>
-        <div className=" mt-16 lg:w-[70%] mx-auto">
+        <div className=" mt-16  w-[90%] lg:w-[70%] mx-auto">
           <div className="grid lg:grid-cols-2 grid-cols-1   gap-10 lg:px-0  ">
+
             {whyus.map((item) => (
-              <div
-                key={item.id}
-                className="flex lg:flex-row flex-col items-center justify-center gap-5 lg:w-[450px] scaleuphover"
-              >
+              <div key={item.id} className="flex lg:flex-row flex-col items-center justify-center gap-5 lg:w-[450px] scaleuphover shadowbox">
                 <div className="flex items-center justify-center">
                   <span className="text-3xl bg-gray-200 rounded-full p-5 ">
-                    {" "}
+                    
                     {item.icon}
                   </span>
                 </div>

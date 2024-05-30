@@ -8,6 +8,7 @@ const AdminPetDetails = () => {
     window.scrollTo(0, 0); // Scroll to the top when component mounts
   }, []);
   const data = useLoaderData();
+  console.log(data);
 
   const dispatch = useDispatch();
   dispatch(stopLoading());

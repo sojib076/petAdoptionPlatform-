@@ -28,30 +28,7 @@ const AdminDashboard = () => {
 
     ]
 
-    const allpets = [{
-        id: 1,
-        Location: "Dhaka",
-        AddedByName: "Sojib",
-        Email: "sojib.gmail.com",
-        Reported: "10 Reports",
-    },
-    {
-        id: 2,
-        Location: "khulna",
-        AddedByName: "jibon",
-        Email: "jibon.gmail.com",
-        Reported: "0 Reports",
-    },
-    {
-        id: 3,
-        Location: "Dhaka",
-        AddedByName: "Sojib",
-        Email: "sojib.gmail.com",
-        Reported: "10 Reports",
-    },
-
-
-    ]
+  
     
     return (
        
