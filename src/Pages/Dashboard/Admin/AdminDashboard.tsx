@@ -92,7 +92,7 @@ const AdminDashboard = () => {
                             <TableHead>Email</TableHead>
                             <TableHead>Reported</TableHead>
                             <TableHead className="text-right"> Fake Products</TableHead>
-                            <TableHead className="text-right"> Details</TableHead>
+                            <TableHead className="text-right"> Detail</TableHead>
                         </TableRow>
                     </TableHeader>
 
