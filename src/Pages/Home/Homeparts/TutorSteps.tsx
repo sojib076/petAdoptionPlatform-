@@ -42,14 +42,15 @@ const TutorSteps = () => {
         {stepsData.map((step, index) => {
           const isLeft = step.position === "left";
           return (
-            <div key={index} className="lg:w-[80%] mx-auto lg:mt-10 mt-5 hover:scale-110 transition-all">
-              <div className={`relative flex items-center bg-[white] ${isLeft ? "flex-row" : "flex-row-reverse"} p-4 shadow-xl shadow-[#E5EEFF]`}>
+            <div key={index} className="lg:w-[80%] mx-auto lg:mt-10 mt-5 hover:scale-110 transition-all pb-2">
+              <div className={`relative flex items-center bg-[white] ${isLeft ? "flex-row" : "flex-row-reverse"} lg:p-4 
+              p-3 shadow-xl shadow-[#E5EEFF]`}>
                 <div className={`flex items-center justify-center w-12 h-12 rounded-full text-white ${step.bgColor} z-10 `}>
                   <span className="text-lg font-bold">{step.number}</span>
                 </div>
-                <div className={`flex-1 ${isLeft ? "pl-8" : "pr-8"}`}>
+                <div className={`flex-1 ${isLeft ? "lg:pl-8 pl-6" : "lg:pr-8 pr-6"}`}>
                   <h3 className="text-lg font-semibold">{step.title}</h3>
-                  <p className="text-gray-600">{step.description}</p>
+                  <p className="text-gray-600 text-justify">{step.description}</p>
                 </div>
                 
               </div>

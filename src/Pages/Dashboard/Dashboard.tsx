@@ -1,7 +1,8 @@
-import AdminDashboard from "./Admin/AdminDashboard";
+
+import UserDashboard from "./User/UserDashboard";
 
 const Dashboard = () => {
-  return <AdminDashboard />;
+  return <UserDashboard />;
 };
 
 export default Dashboard;

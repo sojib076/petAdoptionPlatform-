@@ -15,6 +15,10 @@ import View from "./Pages/Dashboard/View.tsx";
 import Users from "./Pages/Dashboard/Admin/Users.tsx";
 import Petlists from "./Pages/Dashboard/Admin/Petlists.tsx";
 import AdminPetDetails from "./Pages/Dashboard/Admin/AdminPetDetails.tsx";
+import UserAddPet from "./Pages/Dashboard/User/UserAddPet.tsx";
+import AdopitionRequest from "./Pages/Dashboard/User/AdopitionRequest.tsx";
+import UserPetList from "./Pages/Dashboard/User/UserPetList.tsx";
+import UserListofApply from "./Pages/Dashboard/User/UserListofApply.tsx";
 
 // Define routes
 const routes = createBrowserRouter([
@@ -59,6 +63,22 @@ const routes = createBrowserRouter([
             `https://jsonplaceholder.typicode.com/posts/${params.petid}`,
           ).then((res) => res.json()),
         element: <AdminPetDetails />,
+      },
+      {
+        path:"/dashboard/useraddpet",
+        element:<UserAddPet></UserAddPet>
+      },
+      {
+        path:"/dashboard/adoptionreq",
+        element:<AdopitionRequest></AdopitionRequest>
+      },
+      {
+        path:"/dashboard/userpetlist",
+        element:<UserPetList></UserPetList>
+      },
+      {
+        path:"/dashboard/listofapply",
+        element:<UserListofApply></UserListofApply>
       }
     ],
   },

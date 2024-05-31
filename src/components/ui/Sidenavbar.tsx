@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Nav } from "./nav";
-import { ChevronRight, Inbox, Users } from "lucide-react";
+import { ChevronRight, Inbox, Users,BadgePlus, Cat, ScrollText, ListChecks } from "lucide-react";
 import { Button } from "./button";
 
 const Sidenavbar = () => {
@@ -28,7 +28,6 @@ const Sidenavbar = () => {
           },
           admin && {
             title: "Users",
-            label: "128",
             to: "/dashboard/users",
             icon: Users,
             variant: "default",
@@ -38,7 +37,32 @@ const Sidenavbar = () => {
             to: "/dashboard/pets",
             icon: Inbox,
             variant: "default",
-          }
+          },
+          {
+            title: "Add Pet ",
+            to: "/dashboard/useraddpet",
+            icon: BadgePlus,
+            variant: "default",
+          },
+          {
+            title: " Your Added Pets ",
+            to: "/dashboard/userpetlist",
+            icon: Cat,
+            variant: "default",
+          },
+          {
+            title: " Adoption Requested ",
+            to: "/dashboard/adoptionreq",
+            icon: ScrollText,
+            variant: "default",
+          },
+          {
+            title: "List Of Apply ",
+            to: "/dashboard/listofapply",
+            icon: ListChecks,
+            variant: "default",
+          },
+        
         ]}
       />
     </div>
