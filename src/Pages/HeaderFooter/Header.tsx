@@ -1,15 +1,30 @@
-import { useState } from "react";
+
+
+import { useEffect, useState } from "react";
 import { BiMenuAltLeft } from "react-icons/bi";
 import { MdMenuOpen } from "react-icons/md";
+import { useDispatch, useSelector } from "react-redux";
+
 import { Link } from "react-router-dom";
 
-const Header = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const userEmail = localStorage.getItem("userEmail");
+const Header = () => {  
+  const [userEmail, setUserEmail] = useState(localStorage.getItem("userEmail"));
+  const Email = localStorage.getItem("userEmail");
+  const isLoggedIn = useSelector((state:any) => state.userLogin.loggedIn);
+  
 
+  const [menuOpen, setMenuOpen] = useState(false);
   function toggleMenu() {
     setMenuOpen(!menuOpen);
   }
+  useEffect(() => {
+    setUserEmail(Email)
+  }, [isLoggedIn])
+   const handleLogout = () => {
+    localStorage.removeItem('userEmail');
+    setUserEmail(null);
+  };
+
   return (
     <div>
       <div className="sticky  top-0 z-40">
@@ -37,8 +52,8 @@ const Header = () => {
               <Link to="/">Home</Link>
             </li>
             <li className="mx-4 my-6 md:my-0 menuhover ">
-              <Link className="text-xl  " to="/about">
-                About us{" "}
+              <Link className="text-xl  " to="/login">
+                Login
               </Link>
             </li>
             <li className="mx-4 my-6 md:my-0 menuhover text-xl">
@@ -48,13 +63,13 @@ const Header = () => {
             <li className="mx-4 my-6 md:my-0 menuhover">
               {userEmail ? (
                 <Link className="t" to="/dashboard/">
-                  {" "}
-                  Dashboard{" "}
+                 
+                  Dashboard
                 </Link>
               ) : (
                 <Link className="text-xl  " to="/adlogin">
-                  {" "}
-                  Login{" "}
+                 
+                  Login
                 </Link>
               )}
             </li>
@@ -71,14 +86,20 @@ const Header = () => {
                 Home
               </Link>
             </li>
-            <li className="mx-4 my-6 md:my-0  menuhover ">
-              <Link
-                className=" text-xl  hover:text-cyan-500 duration-500 "
-                to="/about"
-              >
-                About us{" "}
-              </Link>
+            <li className="mx-4 my-6 md:my-0 menuhover">
+              {
+                userEmail ? (
+                  <Link className="text-xl hover:text-cyan-500 duration-500" to="/" onClick={handleLogout} >
+                    Logout
+                  </Link>
+                ) : (
+                  <Link className="text-xl hover:text-cyan-500 duration-500" to="/login">
+                    Login
+                  </Link>
+                )
+              }
             </li>
+
 
             <li className="mx-4 my-6 md:my-0  menuhover  ">
               <Link className=" text-xl " to="/dashboard/">

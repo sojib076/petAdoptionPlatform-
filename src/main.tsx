@@ -11,7 +11,6 @@ import { Provider } from "react-redux";
 import store from "./context/features/store.tsx";
 import Dashboardlayout from "./Layout/Dashboardlayout.tsx";
 import Dashboard from "./Pages/Dashboard/Dashboard.tsx";
-import View from "./Pages/Dashboard/View.tsx";
 import Users from "./Pages/Dashboard/Admin/Users.tsx";
 import Petlists from "./Pages/Dashboard/Admin/Petlists.tsx";
 import AdminPetDetails from "./Pages/Dashboard/Admin/AdminPetDetails.tsx";
@@ -19,6 +18,8 @@ import UserAddPet from "./Pages/Dashboard/User/UserAddPet.tsx";
 import AdopitionRequest from "./Pages/Dashboard/User/AdopitionRequest.tsx";
 import UserPetList from "./Pages/Dashboard/User/UserPetList.tsx";
 import UserListofApply from "./Pages/Dashboard/User/UserListofApply.tsx";
+import Login from "./Pages/Loginlogout/Login.tsx";
+import Signup from "./Pages/Loginlogout/Signup.tsx";
 
 // Define routes
 const routes = createBrowserRouter([
@@ -29,6 +30,8 @@ const routes = createBrowserRouter([
       { path: "/home", element: <Home /> },
       { path: "/", element: <Home /> },
       { path: "/petlist", element: <PetList /> },
+      {path:"/login",element:<Login></Login>},
+      { path: "/signup", element: <Signup />},
       {
         path: "/petdetails/:petid",
         loader: ({ params }: any) =>
@@ -37,6 +40,7 @@ const routes = createBrowserRouter([
           ).then((res) => res.json()),
         element: <Petdetails />,
       },
+      
     ],
   },
   {
@@ -44,10 +48,7 @@ const routes = createBrowserRouter([
     element: <Dashboardlayout />,
     children: [
       { path: "/dashboard", element: <Dashboard /> },
-      {
-        path: "/dashboard/view",
-        element: <View></View>,
-      },
+     
       {
         path: "/dashboard/users",
         element: <Users></Users>,
