@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
 import axios from 'axios';
+import { setUserInfo } from "@/context/features/User/userLoginSlice";
+import { useDispatch } from "react-redux";
 
 
 const Signup = () => {
-
-  const handleSubmit = async (e) => {
+const dispatch = useDispatch();
+  const handleSubmit = async (e:any) => {
     e.preventDefault();
     const user = {
       name: e.target[0].value,
@@ -16,7 +18,8 @@ const Signup = () => {
       const response = await axios.post('http://localhost:5000/api/v1/users/signup', {
         user: user
       });
-      console.log('Signup successful:', response.data);
+      
+      dispatch(setUserInfo({ name: response.data.data.user.name, email: response.data.data.user.email }));
     } catch (error) {
       console.error('Signup failed:', error);
     }

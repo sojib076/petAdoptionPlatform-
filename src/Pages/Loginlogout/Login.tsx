@@ -1,6 +1,6 @@
 import { setUserInfo } from "@/context/features/User/userLoginSlice";
 import axios from "axios";
-import { useState } from "react";
+
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
@@ -9,7 +9,7 @@ function Login() {
 
   const dispatch = useDispatch();
   
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e:any) => {
 
     e.preventDefault();
     const user = {

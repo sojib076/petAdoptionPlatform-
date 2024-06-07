@@ -20,6 +20,10 @@ import UserPetList from "./Pages/Dashboard/User/UserPetList.tsx";
 import UserListofApply from "./Pages/Dashboard/User/UserListofApply.tsx";
 import Login from "./Pages/Loginlogout/Login.tsx";
 import Signup from "./Pages/Loginlogout/Signup.tsx";
+import PrivateRoute from "./PrivateRoute/PrivateRoute.tsx";
+import UserRoute from "./PrivateRoute/UserRoute.tsx";
+import AdminRoute from "./PrivateRoute/AdminRoute.tsx";
+
 
 // Define routes
 const routes = createBrowserRouter([
@@ -45,17 +49,16 @@ const routes = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <Dashboardlayout />,
+    element:( <PrivateRoute> <Dashboardlayout/>, </PrivateRoute>),
     children: [
       { path: "/dashboard", element: <Dashboard /> },
-     
       {
         path: "/dashboard/users",
-        element: <Users></Users>,
+        element:(<AdminRoute> <Users></Users>  </AdminRoute>)
       },
       {
         path: "/dashboard/pets",
-        element: <Petlists></Petlists>,
+        element:( <AdminRoute ><Petlists></Petlists> </AdminRoute > )
       },
       {
         path: "/dashboard/petdetails/:petid",
@@ -63,23 +66,23 @@ const routes = createBrowserRouter([
           fetch(
             `https://jsonplaceholder.typicode.com/posts/${params.petid}`,
           ).then((res) => res.json()),
-        element: <AdminPetDetails />,
+        element:(<AdminRoute><AdminPetDetails /></AdminRoute> )
       },
       {
         path:"/dashboard/useraddpet",
-        element:<UserAddPet></UserAddPet>
+        element:( <UserRoute> <UserAddPet/>, </UserRoute>),
       },
       {
         path:"/dashboard/adoptionreq",
-        element:<AdopitionRequest></AdopitionRequest>
+        element:(<UserRoute> <AdopitionRequest></AdopitionRequest></UserRoute>  )
       },
       {
         path:"/dashboard/userpetlist",
-        element:<UserPetList></UserPetList>
+        element:(< UserRoute> <UserPetList></UserPetList> </UserRoute> )
       },
       {
         path:"/dashboard/listofapply",
-        element:<UserListofApply></UserListofApply>
+        element: (<UserRoute> <UserListofApply></UserListofApply></UserRoute> )
       }
     ],
   },

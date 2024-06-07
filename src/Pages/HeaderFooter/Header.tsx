@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { BiMenuAltLeft } from "react-icons/bi";
 import { MdMenuOpen } from "react-icons/md";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 import { Link } from "react-router-dom";
 
@@ -102,9 +102,18 @@ const Header = () => {
 
 
             <li className="mx-4 my-6 md:my-0  menuhover  ">
-              <Link className=" text-xl " to="/dashboard/">
-                Dashboard
-              </Link>
+             {
+                userEmail ? (
+                  <Link className="text-xl hover:text-cyan-500 duration-500" to="/dashboard">
+                    Dashboard
+                  </Link>
+                ) : (
+                  <Link className="text-xl hover:text-cyan-500 duration-500" to="/signup">
+                    signup
+                  </Link>
+                )
+             }
+
             </li>
             <li className="mx-4 my-6 md:my-0 menuhover">
               <Link className="text-xl  " to="/petlist">
