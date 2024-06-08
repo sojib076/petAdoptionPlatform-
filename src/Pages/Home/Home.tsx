@@ -7,14 +7,14 @@ import WhyRelyOnUs from "./Homeparts/WhyRelyOnUs";
 
 const Home = () => {
   return (
-    <>
+    <div className="overflow-hidden">
       <Banner></Banner>
       <Happypets></Happypets>
       <Whatwebest></Whatwebest>
       <TutorSteps></TutorSteps>
       <WhyRelyOnUs></WhyRelyOnUs>
    
-    </>
+    </div>
   );
 };
 

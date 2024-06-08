@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
-import "aos/dist/aos.css";
+
 import Home from "./Pages/Home/Home.tsx";
 import Mainlayout from "./Layout/Mainlayout.tsx";
 import PetList from "./Pages/PetList/PetList.tsx";

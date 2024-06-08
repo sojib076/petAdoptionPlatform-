@@ -51,27 +51,34 @@ const Header = () => {
             <li className="mx-4 my-6 md:my-0 menuhover text-xl  ">
               <Link to="/">Home</Link>
             </li>
-            <li className="mx-4 my-6 md:my-0 menuhover ">
-              <Link className="text-xl  " to="/login">
-                Login
-              </Link>
-            </li>
-            <li className="mx-4 my-6 md:my-0 menuhover text-xl">
-              <Link to="/petlist"> Pet List</Link>
-            </li>
-
             <li className="mx-4 my-6 md:my-0 menuhover">
-              {userEmail ? (
-                <Link className="t" to="/dashboard/">
-                 
-                  Dashboard
-                </Link>
-              ) : (
-                <Link className="text-xl  " to="/adlogin">
-                 
-                  Login
-                </Link>
-              )}
+              {
+                userEmail ? (
+                  <Link className="text-xl hover:text-cyan-500 duration-500" to="/" onClick={handleLogout} >
+                    Logout
+                  </Link>
+                ) : (
+                  <Link className="text-xl hover:text-cyan-500 duration-500" to="/login">
+                    Login
+                  </Link>
+                )
+              }
+            </li>
+           <li className="mx-4 my-6 md:my-0  menuhover  ">
+             {
+                userEmail ? (
+                  <Link className="text-xl hover:text-cyan-500 duration-500" to="/dashboard">
+                    Dashboard
+                  </Link>
+                ) : (
+                  <Link className="text-xl hover:text-cyan-500 duration-500" to="/signup">
+                    signup
+                  </Link>
+                )
+             }
+             </li>
+             <li className="mx-4 my-6 md:my-0 menuhover text-xl">
+              <Link to="/petlist"> Pet List</Link>
             </li>
           </ul>
 

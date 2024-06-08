@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 
 
 const Signup = () => {
+  console.log(`${process.env.data_url}/users/signup`);
 const dispatch = useDispatch();
   const handleSubmit = async (e:any) => {
     e.preventDefault();
@@ -14,12 +15,14 @@ const dispatch = useDispatch();
       password: e.target[2].value,
       location: e.target[3].value,
     } 
+   
     try {
-      const response = await axios.post('http://localhost:5000/api/v1/users/signup', {
+      const response = await axios.post(`${process.env.data_url}/users/signup`, {
         user: user
       });
       
       dispatch(setUserInfo({ name: response.data.data.user.name, email: response.data.data.user.email }));
+      
     } catch (error) {
       console.error('Signup failed:', error);
     }

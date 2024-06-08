@@ -16,7 +16,7 @@ const AdminRoute: React.FC<UserRouteProps> = ({ children }) => {
         if (email) {
           const cleanedEmail = email.replace(/["']/g, ''); 
           console.log(`Email found in localStorage: ${cleanedEmail}`);
-          const response = await axios.post(`http://localhost:5000/api/v1/users/${cleanedEmail}`);
+          const response = await axios.post(`${process.env.data_url}/users/${cleanedEmail}`);
           console.log('API response:', response);
           const userRole = response?.data?.data?.role;
           console.log('userRole:', userRole);

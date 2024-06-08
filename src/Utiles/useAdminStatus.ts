@@ -10,7 +10,7 @@ const useAdminStatus = () => {
       if (email) {
         const cleanedEmail = email.replace(/["']/g, '');
         try {
-          const response = await axios.post(`http://localhost:5000/api/v1/users/${cleanedEmail}`);
+          const response = await axios.post(`${process.env.data_url}/users/${cleanedEmail}`);
           const userRole = response?.data?.data?.role;
           setIsAdmin(userRole === 'admin');
         } catch (error) {
