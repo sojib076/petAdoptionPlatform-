@@ -32,7 +32,7 @@ function Login() {
 
   };
   return (
-    <div className="flex min-h-screen bg-gray-100">
+    <div className="flex lg:flex-row flex-col-reverse min-h-screen bg-gray-100 gap-10 lg:gap-0 ">
       <div className="w-full max-w-md m-auto bg-white rounded-lg shadow-lg p-5">
         <h1 className="text-3xl font-semibold text-center text-gray-700">Login Now </h1>
         <form className="mt-4" onSubmit={handleSubmit}>
