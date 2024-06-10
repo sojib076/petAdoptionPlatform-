@@ -7,18 +7,27 @@ const useAdminStatus = () => {
   useEffect(() => {
     const fetchUserRole = async () => {
       const email = localStorage.getItem("userEmail");
-      if (email) {
+      const token = localStorage.getItem("token");
+      console.log(email, token);
+      if (email && token) {
         const cleanedEmail = email.replace(/["']/g, '');
         try {
-          const response = await axios.post(`${process.env.data_url}/users/${cleanedEmail}`);
+          const response = await axios.get(
+            `${process.env.data_url}/users/${cleanedEmail}`,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`
+              }
+            }
+          );
           const userRole = response?.data?.data?.role;
           setIsAdmin(userRole === 'admin');
         } catch (error) {
           console.error('Error fetching user role:', error);
-          setIsAdmin(false); // Optionally set to false on error
+          setIsAdmin(null); 
         }
       } else {
-        setIsAdmin(false); // Optionally set to false if no email is found
+        setIsAdmin(false); 
       }
     };
 

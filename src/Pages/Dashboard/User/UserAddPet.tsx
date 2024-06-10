@@ -20,8 +20,8 @@ const handleSubmit = (e:any) => {
         imageone: imageone.value,
         imagetwo: imagetwo.value,
     };
-    console.log(newFormData);
-
+  
+console.log(newFormData);
 
 };
 

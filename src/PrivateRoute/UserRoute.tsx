@@ -1,43 +1,42 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+
 import Loadingcom from '@/components/Loading/Loading';
+import useAdminStatus from '@/Utiles/useAdminStatus';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 
 interface UserRouteProps {
   children: React.ReactNode;
 }
-
 const UserRoute: React.FC<UserRouteProps> = ({ children }) => {
-  const [isUser, setIsUser] = useState<boolean | null>(null);
-  const email = localStorage.getItem('userEmail');
 
+  const [isUser, setIsUser] = useState<boolean | null>(null);
+  console.log(isUser);
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        if (email) {
-          const cleanedEmail = email.replace(/["']/g, ''); 
-          console.log(`Email found in localStorage: ${cleanedEmail}`);
-          const response = await axios.post(`${process.env.data_url}/users/${cleanedEmail}`);
-          console.log('API response:', response);
+    const fetchUserRole = async () => {
+      const email = localStorage.getItem('userEmail');
+      const token = localStorage.getItem('token');
+      if (email && token) {
+        const cleanedEmail = email.replace(/["']/g, '');
+        try {
+          const response = await axios.get(`${process.env.data_url}/users/${cleanedEmail}`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
           const userRole = response?.data?.data?.role;
-    
-          if (userRole === 'user' ) {
-            setIsUser(true);
-          } else {
-            setIsUser(false);
-          }
-        } else {
-          console.log('No email found in localStorage');
+          console.log(userRole);
+          setIsUser(userRole === 'user');
+        } catch (error) {
+          console.error('Error fetching user role:', error);
           setIsUser(false);
         }
-      } catch (error) {
-        console.error('Failed to fetch user:', error);
+      } else {
         setIsUser(false);
       }
     };
-  
-    fetchData();
-  }, [email]);
-  
+    fetchUserRole();
+
+  }, []);  
 
   if (isUser === null) {
     return <Loadingcom />;

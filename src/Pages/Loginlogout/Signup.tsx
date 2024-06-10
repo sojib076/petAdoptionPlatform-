@@ -1,11 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
 import { setUserInfo } from "@/context/features/User/userLoginSlice";
 import { useDispatch } from "react-redux";
 
 
 const Signup = () => {
-  console.log(`${process.env.data_url}/users/signup`);
+  const navigate = useNavigate();
 const dispatch = useDispatch();
   const handleSubmit = async (e:any) => {
     e.preventDefault();
@@ -20,9 +20,12 @@ const dispatch = useDispatch();
       const response = await axios.post(`${process.env.data_url}/users/signup`, {
         user: user
       });
-      
+       console.log(response);
       dispatch(setUserInfo({ name: response.data.data.user.name, email: response.data.data.user.email }));
-      
+      localStorage.setItem('userEmail', JSON.stringify(response.data.data.user.email));
+      localStorage.setItem('token', JSON.stringify(response.data.data.token));
+      navigate('/dashboard')
+     
     } catch (error) {
       console.error('Signup failed:', error);
     }

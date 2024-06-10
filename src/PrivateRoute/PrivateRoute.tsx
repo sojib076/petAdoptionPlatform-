@@ -5,9 +5,8 @@ interface UserRouteProps {
      children: React.ReactNode;
    }
 const PrivateRoute:React.FC<UserRouteProps>  = ({children}) => {
-     const isAuthenticated = !!localStorage.getItem('userEmail');
-    
- 
+     const isAuthenticated = !!localStorage.getItem('token');
+
      return isAuthenticated ? children : <Navigate to="/login" />;
     
 };
