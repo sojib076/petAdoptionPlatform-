@@ -2,23 +2,25 @@ import { useDispatch } from "react-redux";
 import { useLoaderData } from "react-router-dom";
 import { stopLoading } from "../../context/features/loading/loadingSlice";
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 const Petdetails = () => {
   useEffect(() => {
-    window.scrollTo(0, 0); // Scroll to the top when component mounts
+    window.scrollTo(0, 0);
   }, []);
-  const data = useLoaderData();
-  console.log(data);
+
+  const fakedata = useLoaderData() as any
+  const data = fakedata?.data as Detailspage
   const dispatch = useDispatch();
   dispatch(stopLoading());
   const imageurl = [
-    "/assets/humancarrypet.png",
-    "/assets/dog.png",
-    "/assets/cat.png",
+    data?.imageOne,
+    data?.imageTwo,
+    data?.imageTwo,
   ];
+
   const [bigImage, setBigImage] = useState(imageurl[0]);
   const [animationClass, setAnimationClass] = useState("");
-
   const handleImageClick = (url: string) => {
     setAnimationClass("animate-pulse");
     setTimeout(() => {
@@ -26,6 +28,30 @@ const Petdetails = () => {
       setAnimationClass("");
     }, 300);
   };
+
+
+  const handelapply = async () => {
+    const petinfo = {
+      petname: data?.petname,
+      petid: data?._id,
+      addedEmail: data?.userEmail,
+    }
+    const token = localStorage.getItem("token"); // Get the token from local storage
+    try{
+         await axios.post(`${process.env.data_url}/requestpet/applypet`, {
+        petinfo
+      }, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+   
+    }catch(error:any){
+      console.error('Error applying for pet:', error.response ? error.response.data : error.message);
+    }
+    
+  }
+
   return (
     <>
       <div className="grid lg:grid-cols-2 lg:p-10 overflow-hidden ">
@@ -50,28 +76,14 @@ const Petdetails = () => {
         <div>
           <div className=" w-[95%]  lg:mt-[5%]  mt-10 p-5 lg:p-0">
             <h1 className=" lg:text-2xl text-xl font-semibold text-gray-800">
-              ACANA Singles Grain Free Limited Ingredient Diet Duck and Pear
-              Formula Dog Treats
+              Pet Name : {data?.petname}
             </h1>
             <h1 className="my-2 font-bold"> Description : </h1>
-            <p className=" text-xm  text-black text-justify lg:pb-5 pb-2">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-              Accusamus dolor cum pariatur error, adipisci, quo perferendis
-              mollitia possimus repellat unde ipsa labore aliquid nulla est vero
-              nisi, maiores debitis ipsum. Lorem ipsum dolor sit amet
-              consectetur adipisicing elit. Unde rerum velit tenetur ut nemo,
-              ullam animi cumque, eius amet perspiciatis molestiae explicabo
-              laborum, optio minus quo corporis impedit dolores voluptas!.Lorem
-              ipsum dolor sit, amet consectetur adipisicing elit. Accusamus
-              dolor cum pariatur error, adipisci, quo perferendis mollitia
-              possimus repellat unde ipsa labore aliquid nulla est vero nisi,
-              maiores debitis ipsum. Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. Unde rerum velit tenetur ut nemo, ullam animi
-              cumque, eius amet perspiciatis molestiae explicabo laborum, optio
-              minus quo corporis impedit dolores voluptas!{" "}
-            </p>
+
+            <div dangerouslySetInnerHTML={{ __html: data?.description }}></div>
+
             <div className="mt-6">
-              <button className="lg:w-[50%] bg-yellow-500 custom-button   font-bold  rounded hover:bg-yellow-600">
+              <button className="lg:w-[50%] bg-yellow-500 custom-button   font-bold  rounded hover:bg-yellow-600" onClick={handelapply}>
                 Apply Now for Adoption
               </button>
             </div>
@@ -79,9 +91,7 @@ const Petdetails = () => {
         </div>
       </div>
 
-      <div className="mt-20">
-        <h1 className="section-title"> Related Pets </h1>
-      </div>
+
     </>
   );
 };

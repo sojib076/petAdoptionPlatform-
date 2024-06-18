@@ -1,5 +1,7 @@
+
 import axios from "axios";
 import { useState, useEffect } from "react";
+
 
 const useAdminStatus = () => {
   const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
@@ -8,7 +10,8 @@ const useAdminStatus = () => {
     const fetchUserRole = async () => {
       const email = localStorage.getItem("userEmail");
       const token = localStorage.getItem("token");
-      console.log(email, token);
+    
+
       if (email && token) {
         const cleanedEmail = email.replace(/["']/g, '');
         try {
@@ -33,6 +36,8 @@ const useAdminStatus = () => {
 
     fetchUserRole();
   }, []);
+
+
 
   return isAdmin;
 };

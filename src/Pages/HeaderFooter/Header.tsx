@@ -22,6 +22,7 @@ const Header = () => {
   }, [isLoggedIn])
    const handleLogout = () => {
     localStorage.removeItem('userEmail');
+    localStorage.removeItem('token');
     setUserEmail(null);
   };
 

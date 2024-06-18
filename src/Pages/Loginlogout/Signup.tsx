@@ -27,7 +27,7 @@ const dispatch = useDispatch();
       navigate('/dashboard')
      
     } catch (error) {
-      console.error('Signup failed:', error);
+      alert('Invalid email or password. Please try again.');
     }
   };
 

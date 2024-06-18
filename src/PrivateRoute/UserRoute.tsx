@@ -1,6 +1,6 @@
 
 import Loadingcom from '@/components/Loading/Loading';
-import useAdminStatus from '@/Utiles/useAdminStatus';
+
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
@@ -10,7 +10,7 @@ interface UserRouteProps {
 const UserRoute: React.FC<UserRouteProps> = ({ children }) => {
 
   const [isUser, setIsUser] = useState<boolean | null>(null);
-  console.log(isUser);
+
   useEffect(() => {
     const fetchUserRole = async () => {
       const email = localStorage.getItem('userEmail');
@@ -24,7 +24,7 @@ const UserRoute: React.FC<UserRouteProps> = ({ children }) => {
             },
           });
           const userRole = response?.data?.data?.role;
-          console.log(userRole);
+      
           setIsUser(userRole === 'user');
         } catch (error) {
           console.error('Error fetching user role:', error);

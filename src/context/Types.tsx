@@ -10,9 +10,8 @@ export interface LocationOption {
   label: string;
 }
 
-export interface Product {
-  petid: number;
-  imageUrl: string;
-  productName: string;
-  productDescription: string;
+export type TlistPets= {
+  petname: string;
+  imageOne: string;
+  description: string;
 }

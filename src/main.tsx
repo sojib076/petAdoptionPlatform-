@@ -40,7 +40,7 @@ const routes = createBrowserRouter([
         path: "/petdetails/:petid",
         loader: ({ params }: any) =>
           fetch(
-            `https://jsonplaceholder.typicode.com/posts/${params.petid}`,
+            `http://localhost:5000/api/v1/allpets/sinlglepet/${params.petid}`,
           ).then((res) => res.json()),
         element: <Petdetails />,
       },
@@ -64,7 +64,7 @@ const routes = createBrowserRouter([
         path: "/dashboard/petdetails/:petid",
         loader: ({ params }: any) =>
           fetch(
-            `https://jsonplaceholder.typicode.com/posts/${params.petid}`,
+            `https://jsonplaceholder.typicode.com/posts/sinlglepet/${params.petid}`,
           ).then((res) => res.json()),
         element:(<AdminRoute><AdminPetDetails /></AdminRoute> )
       },

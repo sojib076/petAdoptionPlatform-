@@ -36,7 +36,7 @@ const AdminDashboard = () => {
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 grid-cols-2 ">
                 {
                     allusers.map((user) => (
-                        <Card className=" shadow-2xl hover:scale-110  hover:rounded-lg transition-all hover:bg-yellow-500 ">
+                        <Card key={user.id} className=" shadow-2xl hover:scale-110  hover:rounded-lg transition-all hover:bg-yellow-500 ">
                             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                                 <CardTitle className="text-sm font-medium"> {user.CardTitle} </CardTitle>
                                 <svg

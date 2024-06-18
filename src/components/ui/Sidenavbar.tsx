@@ -7,7 +7,7 @@ import useAdminStatus from "../../Utiles/useAdminStatus";
 const Sidenavbar = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const isAdmin = useAdminStatus(); 
-  console.log("isAdmin", isAdmin);
+
 
   if (isAdmin === null) {
     return null;

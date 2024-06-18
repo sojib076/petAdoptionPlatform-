@@ -5,9 +5,11 @@ import AdminDashboard from "./Admin/AdminDashboard";
 import Loadingcom from "@/components/Loading/Loading";
 import useAdminStatus from "@/Utiles/useAdminStatus";
 
+
 const Dashboard = () => {
 
   const isAdmin = useAdminStatus();
+
 
   if (isAdmin === null || isAdmin === undefined) {
     return <Loadingcom />;

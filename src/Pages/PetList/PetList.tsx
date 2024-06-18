@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Select, { MultiValue } from "react-select";
-import { LocationOption, Product } from "../../context/Types";
+import { LocationOption, TlistPets } from "../../context/Types";
 import { Link } from "react-router-dom";
 import Loadingcom from "../../components/Loading/Loading";
-import { startLoading } from "../../context/features/loading/loadingSlice";
+import { startLoading, stopLoading } from "../../context/features/loading/loadingSlice";
 import { useDispatch, useSelector } from "react-redux";
 import {
   Pagination,
@@ -14,6 +14,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+import axios from "axios";
 
 const locations: LocationOption[] = [
   { value: "dhaka", label: "Dhaka" },
@@ -29,50 +30,25 @@ const PetList = () => {
 
   console.log(selectedLocations);
   const [selectedOption, setSelectedOption] = useState<string>("all");
-  console.log(selectedOption);
+console.log(selectedOption);
+  const dispatch = useDispatch();
 
-  const products: Product[] = [
-    {
-      petid: 1,
-      imageUrl:
-        "https://img.freepik.com/free-photo/old-rusty-fishing-boat-slope-along-shore-lake_181624-44902.jpg?w=740&t=st=1716548250~exp=1716548850~hmac=ec5b5d712b91437f2322a0bdd8b7806df17c74d9297d9008f3763a4b45a96f25",
-      productName: "Product 1",
-      productDescription: "Description for Product 1 goes here.",
-    },
-    {
-      petid: 2,
-      imageUrl:
-        "https://img.freepik.com/free-photo/wooden-boats_114579-44.jpg?size=626&ext=jpg",
-      productName: "Product 2",
-      productDescription: "Description for Product 2 goes here.",
-    },
-    {
-      petid: 3,
-      imageUrl:
-        "https://img.freepik.com/free-photo/wooden-boats_114579-44.jpg?size=626&ext=jpg",
-      productName: "Product 2",
-      productDescription: "Description for Product 2 goes here.",
-    },
-    {
-      petid: 4,
-      imageUrl:
-        "https://img.freepik.com/free-photo/wooden-boats_114579-44.jpg?size=626&ext=jpg",
-      productName: "Product 2",
-      productDescription: "Description for Product 2 goes here.",
-    },
-    {
-      petid: 5,
-      imageUrl:
-        "https://img.freepik.com/free-photo/wooden-boats_114579-44.jpg?size=626&ext=jpg",
-      productName: "Product 2",
-      productDescription: "Description for Product 2 goes here.",
-    },
-  ];
+  const [pets, setPets] = useState<TlistPets[]>([]);
+  useEffect(() => {
+    dispatch(startLoading());
+    axios.get(`http://localhost:5000/api/v1/allpets/`)
+      .then((res) => {
+        dispatch(stopLoading());
+       setPets(res.data.data);
+      
+      })
+  }, []);
 
   const Loading = useSelector(
     (state: any) => state.loading.isLoading,
   ) as boolean;
-  const dispatch = useDispatch();
+
+
   const handelLoadMore = () => {
     dispatch(startLoading());
   };
@@ -135,22 +111,23 @@ const PetList = () => {
           </div>
 
           <div className=" grid lg:grid-cols-3 grid-cols-2 gap-x-4 gap-y-0 lg:gap-0 ">
-            {products.map((product) => (
-              <div key={product.petid} className="carddesign ">
+            {pets?.map((pet:any) => (
+              <div key={pet._id} className="carddesign ">
                 <img
                   className="lg:h-48 lg:w-full  object-cover object-center"
-                  src={product.imageUrl}
+                  src={pet.imageOne}
                 />
                 <div className="lg:p-4 px-2">
                   <h2 className="mb-2 text-lg font-medium  text-gray-900">
-                    {product.productName}
+                    {pet.petname}
                   </h2>
-                  <p className="mb-2 text-base  text-gray-700">
-                    {product.productDescription}
-                  </p>
+               
+                  <div dangerouslySetInnerHTML={{ __html: pet.description.length > 10 ? `
+                    ${pet.description.slice(0, 50)}...` : pet.description }} />
+
                   <div className=" ">
                     <Link
-                      to={`/petdetails/${product.petid}`}
+                      to={`/petdetails/${pet._id}`}
                       className="text-black"
                       onClick={handelLoadMore}
                     >

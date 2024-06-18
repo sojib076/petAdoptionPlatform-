@@ -22,12 +22,12 @@ function Login() {
     try {
       const response = await axios.post(`${process.env.data_url}/users/login`, { user: user });
         const {findUser, token} = response.data.data;
-      dispatch(setUserInfo({ name: response.data.data.name, email: response.data.data.email }));
+      dispatch(setUserInfo({ name: response.data.data.name, email: response.data.data.email, isAdmin: response.data.data.role === 'admin'}));
       localStorage.setItem('userEmail', JSON.stringify(findUser.email));
       localStorage.setItem('token',token);
       navigate('/dashboard');
     } catch (error) {
-      console.error('Login failed:', error);
+
       setError('Invalid email or password. Please try again.');
     }
   };

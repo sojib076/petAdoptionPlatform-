@@ -4,6 +4,7 @@ const initialState = {
   name: '',
   email: '',
   loggedIn: false,
+  isAdmin: null,
 };
 
 const userSlice = createSlice({
@@ -14,14 +15,16 @@ const userSlice = createSlice({
       state.name = action.payload.name;
       state.email = action.payload.email;
       state.loggedIn = true;
+      state.isAdmin = action.payload.isAdmin;
       // Save user data to local storage
       localStorage.setItem('userEmail', JSON.stringify(action.payload.email));
     },
+    
     clearUserInfo: (state) => {
       state.name = '';
       state.email = '';
       state.loggedIn = false;
-      // Clear user data from local storage
+      state.isAdmin = null;
       localStorage.removeItem('userEmail');
     },
   },
